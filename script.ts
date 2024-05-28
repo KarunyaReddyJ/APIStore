@@ -116,7 +116,10 @@ function getDate():string{
 
 function getAPIS():void{
     const apis:API[]=JSON.parse(localStorage.getItem('APICOLLECTION')|| '[]')
-    apis.map(api=>(appendAPIS(api)))
+    if(apis.length)
+        apis.map(api=>(appendAPIS(api)))
+    else
+        alert('no apis stored yet')
 }
 
 function appendAPIS(api:API):void{
