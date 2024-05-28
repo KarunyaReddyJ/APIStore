@@ -116,6 +116,7 @@ function getDate():string{
 
 function getAPIS():void{
     const apis:API[]=JSON.parse(localStorage.getItem('APICOLLECTION')|| '[]')
+    APISECTION?.innerHTML=``
     if(apis.length)
         apis.map(api=>(appendAPIS(api)))
     else
