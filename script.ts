@@ -6,6 +6,8 @@ const ApiName:HTMLFormElement | null=document.querySelector('input[id="ApiName"]
 const ApiKey:HTMLFormElement | null=document.querySelector('input[id="ApiKey"]') 
 const OtherDetails:HTMLFormElement | null=document.querySelector('textarea[id="other"]')
 const SubmitButton=document.querySelector('input[type="submit"]')
+const APISECTION =document.getElementById('apis') 
+const getAPISButton:HTMLButtonElement  | null =document.querySelector('button[id="GetApi"]')
 type API={
     name:string;
     key:string;
@@ -23,6 +25,9 @@ else{
     SubmitButton?.addEventListener('click',(e)=>{
         e.preventDefault()
         AddKey()
+    })
+    getAPISButton?.addEventListener('click',()=>{
+        getAPIS()
     })
 }
 function AddKey(){
@@ -107,4 +112,16 @@ function getDate():string{
 
     return formattedDate 
 
+}
+
+function getAPIS():void{
+    const apis:API[]=JSON.parse(localStorage.getItem('APICOLLECTION')|| '[]')
+    apis.map(api=>(appendAPIS(api)))
+}
+
+function appendAPIS(api:API):void{
+    const div=document.createElement('div')
+    div.innerHTML=`<h3>${api.name}</h3>
+    <p>${api.key}</p> <p>${api.other}</p><p>${api.date}</p>`
+    APISECTION?.appendChild(div)
 }

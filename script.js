@@ -15,6 +15,8 @@ var ApiName = document.querySelector('input[id="ApiName"]');
 var ApiKey = document.querySelector('input[id="ApiKey"]');
 var OtherDetails = document.querySelector('textarea[id="other"]');
 var SubmitButton = document.querySelector('input[type="submit"]');
+var APISECTION = document.getElementById('apis');
+var getAPISButton = document.querySelector('button[id="GetApi"]');
 var APIS = [];
 if (!loggedIn)
     AuthenticateOrAddUser();
@@ -25,6 +27,9 @@ else {
     SubmitButton === null || SubmitButton === void 0 ? void 0 : SubmitButton.addEventListener('click', function (e) {
         e.preventDefault();
         AddKey();
+    });
+    getAPISButton === null || getAPISButton === void 0 ? void 0 : getAPISButton.addEventListener('click', function () {
+        getAPIS();
     });
 }
 function AddKey() {
@@ -100,4 +105,13 @@ function getDate() {
     var day = padLeft(String(date.getDate()), 2);
     var formattedDate = "".concat(year, "-").concat(month, "-").concat(day);
     return formattedDate;
+}
+function getAPIS() {
+    var apis = JSON.parse(localStorage.getItem('APICOLLECTION') || '[]');
+    apis.map(function (api) { return (appendAPIS(api)); });
+}
+function appendAPIS(api) {
+    var div = document.createElement('div');
+    div.innerHTML = "<h3>".concat(api.name, "</h3>\n    <p>").concat(api.key, "</p> <p>").concat(api.other, "</p><p>").concat(api.date, "</p>");
+    APISECTION === null || APISECTION === void 0 ? void 0 : APISECTION.appendChild(div);
 }
