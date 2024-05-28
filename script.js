@@ -117,6 +117,7 @@ function getAPIS() {
 }
 function appendAPIS(api) {
     var div = document.createElement('div');
-    div.innerHTML = "<h3>".concat(api.name, "</h3>\n    <p>").concat(api.key, "</p> <p>").concat(api.other, "</p><p>").concat(api.date, "</p>\n    <button class=\"ApiDelete\" >Delete</button>");
+    div.className = 'ApiList';
+    div.innerHTML = "<h3>API NAME:".concat(api.name, "</h3>\n    <p> <strong>API KEY:</strong>").concat(api.key, "</p> <p> <strong>Others:</strong>").concat(api.other || '   null', "</p><p> <strong>UPLOAD DATE:</strong> ").concat(api.date, "</p>\n    <button class=\"ApiDelete\" >Delete</button>");
     APISECTION === null || APISECTION === void 0 ? void 0 : APISECTION.appendChild(div);
 }

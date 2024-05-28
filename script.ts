@@ -126,8 +126,9 @@ function getAPIS():void{
 
 function appendAPIS(api:API):void{
     const div=document.createElement('div')
-    div.innerHTML=`<h3>${api.name}</h3>
-    <p>${api.key}</p> <p>${api.other}</p><p>${api.date}</p>
+    div.className='ApiList'
+    div.innerHTML=`<h3>API NAME:${api.name}</h3>
+    <p> <strong>API KEY:</strong>${api.key}</p> <p> <strong>Others:</strong>${api.other || '   null' }</p><p> <strong>UPLOAD DATE:</strong> ${api.date}</p>
     <button class="ApiDelete" >Delete</button>`
     APISECTION?.appendChild(div)
 }
