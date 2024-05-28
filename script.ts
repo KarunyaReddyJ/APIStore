@@ -116,7 +116,8 @@ function getDate():string{
 
 function getAPIS():void{
     const apis:API[]=JSON.parse(localStorage.getItem('APICOLLECTION')|| '[]')
-    APISECTION?.innerHTML=``
+    if(APISECTION)
+        APISECTION.innerHTML=``
     if(apis.length)
         apis.map(api=>(appendAPIS(api)))
     else
@@ -126,6 +127,7 @@ function getAPIS():void{
 function appendAPIS(api:API):void{
     const div=document.createElement('div')
     div.innerHTML=`<h3>${api.name}</h3>
-    <p>${api.key}</p> <p>${api.other}</p><p>${api.date}</p>`
+    <p>${api.key}</p> <p>${api.other}</p><p>${api.date}</p>
+    <button class="ApiDelete" >Delete</button>`
     APISECTION?.appendChild(div)
 }

@@ -108,10 +108,15 @@ function getDate() {
 }
 function getAPIS() {
     var apis = JSON.parse(localStorage.getItem('APICOLLECTION') || '[]');
-    apis.map(function (api) { return (appendAPIS(api)); });
+    if (APISECTION)
+        APISECTION.innerHTML = "";
+    if (apis.length)
+        apis.map(function (api) { return (appendAPIS(api)); });
+    else
+        alert('no apis stored yet');
 }
 function appendAPIS(api) {
     var div = document.createElement('div');
-    div.innerHTML = "<h3>".concat(api.name, "</h3>\n    <p>").concat(api.key, "</p> <p>").concat(api.other, "</p><p>").concat(api.date, "</p>");
+    div.innerHTML = "<h3>".concat(api.name, "</h3>\n    <p>").concat(api.key, "</p> <p>").concat(api.other, "</p><p>").concat(api.date, "</p>\n    <button class=\"ApiDelete\" >Delete</button>");
     APISECTION === null || APISECTION === void 0 ? void 0 : APISECTION.appendChild(div);
 }
